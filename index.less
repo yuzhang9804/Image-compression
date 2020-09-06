@@ -8,8 +8,20 @@ body, html {
     display: grid;
     justify-items: center;
     align-items: center;
-    grid-template-rows: 100px auto;
-    background-color: #ff6700;
+    grid-template-rows: 100px 50px auto;
+
+    &-title {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      justify-items: center;
+      align-items: center;
+      grid-template-columns: repeat(2, 50%);
+
+      span {
+        display: inline-block;
+      }
+    }
 
     &-image {
       width: 100%;
@@ -17,6 +29,7 @@ body, html {
       display: grid;
       grid-template-columns: 50% 50%;
       grid-template-rows: 100%;
+      justify-items: center;
 
       img {
         max-width: 100%;
