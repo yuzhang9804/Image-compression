@@ -9,7 +9,20 @@
 <body>
   <main class="wrapper">
     <section class="wrapper-form">
-      <input type="file" id="file">
+      <input type="file" id="file" class="wrapper-form-file">
+      <label for="width">
+        Width：
+        <input type="number" id="width">
+      </label>
+      <label for="height">
+        Height：
+        <input type="number" id="height">
+      </label>
+      <label for="height">
+        FileName：
+        <input type="text" id="file-name" disabled>
+      </label>
+      <button class="wrapper-form-select" id="select-file">选择文件</button>
       <button id="submit">Submit</button>
     </section>
 

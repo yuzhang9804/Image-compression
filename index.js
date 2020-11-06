@@ -4,17 +4,20 @@
  * @Description: 前端图片压缩
  */
 
-const btn = document.querySelector('#submit'),
-      file = document.querySelector('#file'),
-      beforeImg = document.querySelector('#beforeImg'),
-      afterImg = document.querySelector('#afterImg');
+const getDom = (id) => document.querySelector(`#${id}`);
+
+const submit = getDom('submit');
+const file = getDom('file');
+const beforeImg = getDom('beforeImg');
+const afterImg = getDom('afterImg');
+const select = getDom('select-file');
+const fileName = getDom('file-name');
 
 const fileReader = new FileReader();
 
 const imgToCanvas = () => {
-  /* 等比缩放为宽 300px 大小 */
-  const width = 300;
-  const height = 300 / beforeImg.width * beforeImg.height;
+  const width = getDom('width').value || 300;
+  const height = getDom('height').value || (width * (beforeImg.height / beforeImg.width));
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
   canvas.width = width;
@@ -30,7 +33,7 @@ const imgToCanvas = () => {
   afterImg.style.display = 'inline-block';
 }
 
-btn.addEventListener('click', function () {
+submit.addEventListener('click', function () {
   const { files } = file;
   fileReader.readAsDataURL(files[0]);
 })
@@ -40,6 +43,14 @@ fileReader.addEventListener('load', function () {
   beforeImg.style.display = 'inline-block';
 })
 
-beforeImg.addEventListener('load', imgToCanvas)
+beforeImg.addEventListener('load', imgToCanvas);
+
+select.addEventListener('click', () => {
+  file.click();
+})
+
+file.addEventListener('change',  () => {
+  fileName.value = file.files[0].name;
+})
 
 
